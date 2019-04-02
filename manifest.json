@@ -1,0 +1,63 @@
+{
+
+  "description": "Adds a solid red border to all webpages matching mozilla.org. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#borderify",
+  "manifest_version": 2,
+  "name": "cicJob",
+  "version": "1.2",
+  "homepage_url": "https://fibo.vn",
+  "icons": {
+    "48": "icons/border-48.png"
+  }, 
+  "applications": {
+    "gecko": {
+      "id": "cicJob@fibo.vn"
+    }
+  },
+  "content_scripts": [    
+    {
+      "matches": ["https://cic.org.vn/ACBBox-CIC-External/faces/TaskFlow?FID=18628*"],
+      "js": ["getCic.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://cic.org.vn/ACBBox-CIC-External/faces/TaskFlow?FID=16181*"],
+      "js": ["getCicDetail.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://cic.org.vn/ACBBox-CIC-External/faces/Login?*"],
+      "js": ["login.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://cic.org.vn/ACBBox-CIC-External/faces/Home?*"],
+      "js": ["redirect.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches":["https://www.iplocation.net/find-ip-address"],
+      "js":["all.js"],
+      "run_at":"document_start"
+    }
+    
+  ],
+  "background": {    
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "nativeMessaging",
+    "tabs",
+    "activeTab",
+    "proxy",
+    "browserSettings",
+    "https://cic.org.vn/ACBBox-CIC-External/captchaservlet",
+    "https://localhost/*",
+    "https://*.ngrok.io/*",
+    "storage",
+	"alarms",
+	"webRequest",
+	"<all_urls>"
+  ]
+
+}

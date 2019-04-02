@@ -1,0 +1,1 @@
+start web-ext run --start-url https://cic.org.vn/ACBBox-CIC-External/faces/Login?lang=vn --keep-profile-changes
